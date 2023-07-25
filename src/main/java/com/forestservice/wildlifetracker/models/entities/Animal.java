@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 @Entity
 @Table(name = "animals")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "is_endangered", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "is_endangered", discriminatorType = DiscriminatorType.STRING)
 @Data
 @NoArgsConstructor
 public class Animal {
@@ -19,8 +21,12 @@ public class Animal {
 
     private String name;
 
+
+
     public Animal(String name) {
         this.name = name;
+
     }
+
 
 }
