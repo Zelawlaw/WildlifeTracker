@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "animals")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "is_endangered", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "isendangered", discriminatorType = DiscriminatorType.STRING)
 @Data
 @NoArgsConstructor
 public class Animal {
@@ -19,9 +19,8 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String name;
-
-
 
     public Animal(String name) {
         this.name = name;

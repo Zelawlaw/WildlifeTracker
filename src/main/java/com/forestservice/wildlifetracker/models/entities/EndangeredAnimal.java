@@ -3,14 +3,12 @@ package com.forestservice.wildlifetracker.models.entities;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Data;
 
-import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@DiscriminatorValue("endangered") // Value for the "is_endangered" discriminator column representing EndangeredAnimal
+@DiscriminatorValue("EndangeredAnimal") // Value for the "isendangered" discriminator column representing EndangeredAnimal
 public class EndangeredAnimal extends Animal {
 
     private String health;
