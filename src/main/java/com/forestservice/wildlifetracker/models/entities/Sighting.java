@@ -4,6 +4,7 @@ package com.forestservice.wildlifetracker.models.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 @Entity
 @Table(name = "sightings")
@@ -23,6 +24,11 @@ public class Sighting {
     private String location;
     private String rangerName;
 
+    @Basic(optional = false)
+    @Column(name = "reportedtime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date reportedTime;
+
 
     // Constructor for regular Animal sighting
     public Sighting(Animal animal, String location, String rangerName) {
@@ -30,6 +36,7 @@ public class Sighting {
         this.location = location;
         this.rangerName = rangerName;
         this.isEndangered = false;
+        this.reportedTime = new Date();
     }
 
     // Constructor for EndangeredAnimal sighting
@@ -38,6 +45,7 @@ public class Sighting {
         this.location = location;
         this.rangerName = rangerName;
         this.isEndangered = true;
+        this.reportedTime = new Date();
     }
 
 

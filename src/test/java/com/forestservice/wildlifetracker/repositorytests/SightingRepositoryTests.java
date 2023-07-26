@@ -1,6 +1,5 @@
 package com.forestservice.wildlifetracker.repositorytests;
 
-
 import com.forestservice.wildlifetracker.models.entities.Animal;
 import com.forestservice.wildlifetracker.models.entities.EndangeredAnimal;
 import com.forestservice.wildlifetracker.models.entities.Sighting;
@@ -12,10 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 public class SightingRepositoryTests {
@@ -44,6 +43,7 @@ public class SightingRepositoryTests {
     public void testSavingSightingSuccess(){
         //add sighting of  Lion-Test
         Sighting lionsighting = new Sighting(animal1, "Tsavo", "Zelawlaw");
+
         //add sighting of  Tiger-Test
         Sighting tigersighting = new Sighting(endangeredAnimal, "India", "Zelawlaw");
         this.sightingRepository.save(lionsighting);
@@ -54,10 +54,10 @@ public class SightingRepositoryTests {
 
         //sightings of endangered animals
         assertEquals(1,this.sightingRepository.findAllEndangeredSightings().size());
+
+        //confirm reported time is not null
+        assertNotNull(this.sightingRepository.findAll().get(0).getReportedTime());
     }
-
-
-
 
     @AfterEach
     public void cleanupData() {
