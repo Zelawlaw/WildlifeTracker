@@ -1,5 +1,6 @@
 package com.forestservice.wildlifetracker.services;
 
+import com.forestservice.wildlifetracker.exceptions.AnimalExistsException;
 import com.forestservice.wildlifetracker.models.entities.Animal;
 import com.forestservice.wildlifetracker.models.entities.EndangeredAnimal;
 
@@ -9,17 +10,15 @@ public interface AnimalService {
 
     List<Animal> getAllAnimals();
 
-    void addAnimal(String name);
+    void addAnimal(String name) throws AnimalExistsException;
 
-    void updateAnimal(Animal animal);
 
     void deleteAnimal(String name);
 
     // Additional methods for handling EndangeredAnimal
     List<EndangeredAnimal> getAllEndangeredAnimals();
 
-    void addEndangeredAnimal(String name,String age,String health);
+    void addEndangeredAnimal(String name,String health,String age) throws AnimalExistsException;
 
-    void updateEndangeredAnimal(EndangeredAnimal endangeredAnimal);
 
 }
