@@ -1,5 +1,6 @@
 package com.forestservice.wildlifetracker.services;
 
+import com.forestservice.wildlifetracker.exceptions.AnimalExistsException;
 import com.forestservice.wildlifetracker.models.entities.Sighting;
 
 import java.util.List;
@@ -8,8 +9,10 @@ public interface SightingService {
 
     List<Sighting> getAllSightings();
 
-    void addSighting( int animalId, String location, String rangerName);
+    List<Sighting> getAllEndangeredSightings();
 
-    void deleteSighting (int sightingId);
+    void addSighting(Long animalId, String location, String rangerName) throws AnimalExistsException;
+
+    void deleteSighting (long sightingId);
 
 }
