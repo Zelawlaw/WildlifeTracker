@@ -12,12 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
@@ -75,6 +78,27 @@ public class AnimalServiceTests {
         verify(animalRepository, never()).save(any(EndangeredAnimal.class));
     }
 
+    @Test
+    public void testGetAllAnimals() {
+        // Create some sample data
+        Animal animal1 = new Animal("Lion");
+        Animal animal2 = new Animal("Tiger");
+        EndangeredAnimal endangeredAnimal1 = new EndangeredAnimal("Elephant", "HEALTHY", "ADULT");
+        EndangeredAnimal endangeredAnimal2 = new EndangeredAnimal("Giraffe", "ILL", "YOUNG");
+
+        // Define the behavior of the mocked repository
+        List<Animal> allOrdinary = Arrays.asList(animal1, animal2);
+        List<EndangeredAnimal> allEndangered = Arrays.asList(endangeredAnimal1, endangeredAnimal2);
+        when(animalRepository.findAllNonEndangeredAnimals()).thenReturn(allOrdinary);
+        when(animalRepository.findAllEndangeredAnimals()).thenReturn(allEndangered);
+
+        // Call the method under test
+        List<Object> allCombinedAnimals = animalService.getAllAnimals();
+         System.out.println(animal1.toString());
+        System.out.println(endangeredAnimal1.toString());
+        // Assert the result
+        assertThat(allCombinedAnimals).containsExactly(animal1, animal2, endangeredAnimal1, endangeredAnimal2);
+    }
 
 
 }

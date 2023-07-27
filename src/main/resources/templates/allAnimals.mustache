@@ -1,0 +1,33 @@
+{{> headerandnav}}
+
+<div class="container">
+    <h1>All Animals</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Health</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#animals}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                {{#health}} <!-- Check if the health attribute exists (for EndangeredAnimal) -->
+                    <td>{{health}}</td>
+                    <td>{{age}}</td>
+                {{/health}}
+                {{^health}} <!-- If health attribute doesn't exist (for Animal) -->
+                    <td>N/A</td>
+                    <td>N/A</td>
+                {{/health}}
+            </tr>
+        {{/animals}}
+        </tbody>
+    </table>
+</div>
+
+{{> footer}}

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AnimalService {
 
-    List<Animal> getAllAnimals();
+    List<Object> getAllAnimals();
 
     void addAnimal(String name) throws AnimalExistsException;
 
