@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Sightings</title>
+</head>
+<body>
+<h1>All Sightings</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Animal</th>
+        <th>Endangered</th>
+        <th>Location</th>
+        <th>Ranger Name</th>
+        <th>Sighting Time</th>
+        <th>Actions</th>
+    </tr>
+    {{#sightings}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{animal.name}}</td>
+            <td>{{isEndangered}}</td>
+            <td>{{location}}</td>
+            <td>{{rangerName}}</td>
+            <td>{{reportedTime}}</td>
+            <td>
+                <form action="/deleteSighting/{{id}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {{/sightings}}
+</table>
+</body>
+</html>

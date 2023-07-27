@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Sighting</title>
+</head>
+<body>
+<h1>Add Sighting</h1>
+<form action="/addSighting" method="post">
+    <label for="animal">Animal:</label>
+    <select id="animal" name="animal.id">
+        {{#animals}}
+            <option value="{{id}}">{{name}}</option>
+        {{/animals}}
+    </select>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required>
+
+    <label for="rangerName">Ranger Name:</label>
+    <input type="text" id="rangerName" name="rangerName" required>
+
+    <input type="submit" value="Add Sighting">
+</form>
+</body>
+</html>
