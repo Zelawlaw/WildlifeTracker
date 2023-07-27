@@ -4,6 +4,7 @@ const healthSelect = document.getElementById("health");
 const ageSelect = document.getElementById("age");
 const submitBtn = document.getElementById("submitBtn");
 
+if(isEndangeredCheckbox !== null){
 isEndangeredCheckbox.addEventListener("change", function() {
     if (isEndangeredCheckbox.checked) {
         endangeredOptionsDiv.style.display = "block";
@@ -13,8 +14,9 @@ isEndangeredCheckbox.addEventListener("change", function() {
         submitBtn.disabled = false;
     }
 });
-
+}
 // Function to check if all required fields are dirty
+if(healthSelect !== null){
 function checkDirtyFields() {
  console.log('checkDirtyFields()');
     if (isEndangeredCheckbox.checked) {
@@ -31,3 +33,4 @@ function checkDirtyFields() {
 // Add event listeners to health and age selects
 healthSelect.addEventListener("change", checkDirtyFields);
 ageSelect.addEventListener("change", checkDirtyFields);
+}

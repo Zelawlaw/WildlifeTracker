@@ -39,7 +39,7 @@ public class SightingController {
     @PostMapping("/deleteSighting/{sightingId}")
     public String deleteSighting(@PathVariable("sightingId") long sightingId) {
         sightingService.deleteSighting(sightingId);
-        return "redirect:/sightings";
+        return "redirect:/";
     }
 }
 
