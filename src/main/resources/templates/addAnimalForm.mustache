@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Animal</title>
+</head>
+<body>
+<h1>Add Animal</h1>
+<form action="/animal" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="isEndangered">Is Endangered?</label>
+    <input type="checkbox" id="isEndangered" name="isEndangered">
+
+    <div id="endangeredOptions" style="display: none;">
+        <label for="health">Health:</label>
+        <select id="health" name="health">
+            <option></option>
+            <option value="HEALTHY">Healthy</option>
+            <option value="ILL">Ill</option>
+            <option value="OKAY">Okay</option>
+        </select>
+
+        <label for="age">Age:</label>
+        <select id="age" name="age">
+            <option></option>
+            <option value="NEWBORN">Newborn</option>
+            <option value="YOUNG">Young</option>
+            <option value="ADULT">Adult</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Add Animal">
+</form>
+
+<script>
+        const isEndangeredCheckbox = document.getElementById("isEndangered");
+        const endangeredOptionsDiv = document.getElementById("endangeredOptions");
+
+        isEndangeredCheckbox.addEventListener("change", function() {
+            if (isEndangeredCheckbox.checked) {
+                endangeredOptionsDiv.style.display = "block";
+            } else {
+                endangeredOptionsDiv.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

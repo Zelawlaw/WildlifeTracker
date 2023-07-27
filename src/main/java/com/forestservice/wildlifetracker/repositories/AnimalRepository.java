@@ -27,5 +27,9 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     List<Animal> findAnimalsByNameEndingWith(String s);
 
     List<Animal> findAnimalsByName(String s);
+
+    @Query(value = "SELECT * FROM animals WHERE isendangered = 'Animal'", nativeQuery = true)
+    List<Animal> findAllNonEndangeredAnimals();
+
 }
 

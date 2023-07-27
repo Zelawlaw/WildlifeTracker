@@ -6,11 +6,14 @@ import com.forestservice.wildlifetracker.models.entities.EndangeredAnimal;
 import com.forestservice.wildlifetracker.repositories.AnimalRepository;
 import com.forestservice.wildlifetracker.services.AnimalService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
@@ -18,8 +21,18 @@ public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
 
     @Override
-    public List<Animal> getAllAnimals() {
-        return this.animalRepository.findAll();
+    public List<Object> getAllAnimals() {
+        List<Object> allCombinedAnimals = new ArrayList<>();
+        List<Animal> allOrdinary = this.animalRepository.findAllNonEndangeredAnimals();
+        List<EndangeredAnimal> allendangered = this.animalRepository.findAllEndangeredAnimals();
+        allCombinedAnimals.addAll(allOrdinary);
+        allCombinedAnimals.addAll(allendangered);
+
+        for(int i = 0;i<allCombinedAnimals.size();i++){
+            log.info(allCombinedAnimals.get(i).toString());
+        }
+
+      return allCombinedAnimals;
     }
 
 

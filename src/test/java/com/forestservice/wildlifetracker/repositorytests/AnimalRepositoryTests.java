@@ -48,6 +48,14 @@ public class AnimalRepositoryTests {
     }
 
 
+    @Test
+    public void testFindAllNonEndangeredAnimals() {
+        List<Animal> nonendangeredAnimals = animalRepository.findAllNonEndangeredAnimals();
+        assertEquals(2,nonendangeredAnimals.size());
+
+    }
+
+
     @AfterEach
     public void cleanupData() {
         // Find all animals with the '-test' suffix

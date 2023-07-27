@@ -8,10 +8,12 @@ import jakarta.persistence.Entity;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 @DiscriminatorValue("EndangeredAnimal") // Value for the "isendangered" discriminator column representing EndangeredAnimal
 public class EndangeredAnimal extends Animal {
 
@@ -27,6 +29,11 @@ public class EndangeredAnimal extends Animal {
         super(name);
         this.health = HealthStatus.valueOf(health.toUpperCase());
         this.age = AgeCategory.valueOf(age.toUpperCase());
+    }
+
+    @Override
+    public String toString() {
+        return "EndangeredAnimal(" + super.toString() + ", health=" + health + ", age=" + age + ")";
     }
 
 
