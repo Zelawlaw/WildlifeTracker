@@ -24,8 +24,8 @@ public class SightingRepositoryTests {
 
     @Autowired
     AnimalRepository animalRepository;
-    Animal animal1,animal2;
-    EndangeredAnimal endangeredAnimal;
+    Animal animal1,animal2,endangeredAnimal;
+
     @BeforeEach
     public void setupData() {
         //sample animals
@@ -64,6 +64,6 @@ public class SightingRepositoryTests {
 
         // Find all animals with the '-test' suffix
         List<Animal> animalsToRemove = animalRepository.findAnimalsByNameEndingWith("-test");
-        animalRepository.deleteAll(animalsToRemove);
+       // animalRepository.deleteAll(animalsToRemove);
     }
 }

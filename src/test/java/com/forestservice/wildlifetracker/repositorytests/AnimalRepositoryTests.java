@@ -26,7 +26,7 @@ public class AnimalRepositoryTests {
     public void setupData() {
         Animal animal1 = new Animal("Lion-test");
         Animal animal2 = new Animal("Elephant-test");
-        EndangeredAnimal endangeredAnimal = new EndangeredAnimal("Tiger-test", "healthy", "adult");
+        Animal endangeredAnimal = new EndangeredAnimal("Tiger-test", "healthy", "adult");
 
         animalRepository.save(animal1);
         animalRepository.save(animal2);
