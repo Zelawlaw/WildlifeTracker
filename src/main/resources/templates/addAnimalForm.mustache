@@ -30,20 +30,9 @@
         </select>
     </div>
 
-    <input type="submit" value="Add Animal">
+    <input id = "submitBtn" type="submit" value="Add Animal">
 </form>
 
-<script>
-        const isEndangeredCheckbox = document.getElementById("isEndangered");
-        const endangeredOptionsDiv = document.getElementById("endangeredOptions");
-
-        isEndangeredCheckbox.addEventListener("change", function() {
-            if (isEndangeredCheckbox.checked) {
-                endangeredOptionsDiv.style.display = "block";
-            } else {
-                endangeredOptionsDiv.style.display = "none";
-            }
-        });
-    </script>
+<script src="/js/main.js"></script>
 </body>
 </html>

@@ -32,9 +32,7 @@ public class AnimalController {
 
     @GetMapping("/addanimal")
     public String getAddAnimalForm(Model model) {
-        // Create an empty Animal object to bind the form data
         Animal animal = new Animal();
-
         model.addAttribute("animal", animal);
         return "addAnimalForm";
     }
@@ -42,7 +40,8 @@ public class AnimalController {
     @PostMapping("/animal")
     public String addAnimal(@RequestParam("name") String name,
                             @RequestParam(value = "health", required = false) String health,
-                            @RequestParam(value = "age", required = false) String age) {
+                            @RequestParam(value = "age", required = false) String age,
+                            Model model) {
         try {
             log.info("adding endangered animal: {} ,health:{}, age :{} , health is empty :{}",name,health,age,health.isEmpty());
             // If health and age parameters are provided, it's an EndangeredAnimal
@@ -55,13 +54,15 @@ public class AnimalController {
             }
             return "redirect:/animals";
         } catch (AnimalExistsException e) {
-            // Catch the exception and redirect to the error page with the error message
-            return "redirect:/error?errorMessage=" + e.getMessage();
+            model.addAttribute("errorMessage", e.getMessage());
+
+            return "errorPage";
         }
     }
 
     @GetMapping("/error")
     public String showErrorPage(@RequestParam("errorMessage") String errorMessage, Model model) {
+        log.info("in error?");
         model.addAttribute("errorMessage", errorMessage);
         return "errorPage";
     }

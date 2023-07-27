@@ -60,7 +60,7 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public void addEndangeredAnimal(String name, String age, String health) throws AnimalExistsException {
-        if (this.animalRepository.findEndangeredAnimalsByName(name).size() >0 ) {
+        if (this.animalRepository.findAnimalsByName(name).size() >0 ) {
             throw new AnimalExistsException("Endangered Animal with name '" + name + "' already exists.");
         }
 
