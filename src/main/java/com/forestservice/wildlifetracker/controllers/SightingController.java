@@ -27,10 +27,10 @@ public class SightingController {
     @PostMapping("/addSighting")
     public String addSighting(@ModelAttribute Sighting sighting) throws AnimalExistsException {
         sightingService.addSighting(sighting.getAnimal().getId(), sighting.getLocation(), sighting.getRangerName());
-        return "redirect:/sightings";
+        return "redirect:/";
     }
 
-    @GetMapping("/sightings")
+    @GetMapping("/")
     public String listAllSightings(Model model) {
         model.addAttribute("sightings", sightingService.getAllSightings());
         return "listSightings";
