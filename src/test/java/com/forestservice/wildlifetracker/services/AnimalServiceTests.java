@@ -26,11 +26,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class AnimalServiceTests {
 
-    @Autowired
-    private AnimalService animalService;
-
     @MockBean
     AnimalRepository animalRepository;
+    @Autowired
+    private AnimalService animalService;
 
     @Test
     void testAddEndangeredAnimal_Success() throws AnimalExistsException {
@@ -46,7 +45,7 @@ public class AnimalServiceTests {
         when(animalRepository.save(any(EndangeredAnimal.class))).thenReturn(null); // Return value not used in this test
 
         // Call the addEndangeredAnimal method
-        animalService.addEndangeredAnimal(name,  health, age);
+        animalService.addEndangeredAnimal(name, health, age);
 
         // Verify that the animalRepository.findEndangeredAnimalsByName is called once with the correct argument
         verify(animalRepository, times(1)).findAnimalsByName(eq(name));
@@ -64,11 +63,11 @@ public class AnimalServiceTests {
 
         // Mock the behavior of the animalRepository to return a list containing an existing endangered animal with the given name
         when(animalRepository.findAnimalsByName(eq(name)))
-                .thenReturn(Collections.singletonList(new EndangeredAnimal(name,health,age)));
+                .thenReturn(Collections.singletonList(new EndangeredAnimal(name, health, age)));
 
         // Call the addEndangeredAnimal method and expect it to throw AnimalExistsException
         assertThrows(AnimalExistsException.class, () -> {
-            animalService.addEndangeredAnimal(name,health,age);
+            animalService.addEndangeredAnimal(name, health, age);
         });
 
         // Verify that the animalRepository.findEndangeredAnimalsByName is called once with the correct argument
@@ -94,7 +93,7 @@ public class AnimalServiceTests {
 
         // Call the method under test
         List<Object> allCombinedAnimals = animalService.getAllAnimals();
-         System.out.println(animal1.toString());
+        System.out.println(animal1.toString());
         System.out.println(endangeredAnimal1.toString());
         // Assert the result
         assertThat(allCombinedAnimals).containsExactly(animal1, animal2, endangeredAnimal1, endangeredAnimal2);

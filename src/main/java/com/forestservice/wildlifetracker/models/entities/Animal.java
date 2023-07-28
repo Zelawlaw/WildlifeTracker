@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
 @Entity
 @Table(name = "animals")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

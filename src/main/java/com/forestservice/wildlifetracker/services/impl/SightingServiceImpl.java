@@ -55,6 +55,6 @@ public class SightingServiceImpl implements SightingService {
 
     @Override
     public void deleteSighting(long sightingId) {
-      this.sightingRepository.deleteById(sightingId);
+        this.sightingRepository.deleteById(sightingId);
     }
 }

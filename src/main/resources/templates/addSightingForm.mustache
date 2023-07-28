@@ -5,7 +5,7 @@
     <form action="/addSighting" method="post" class="form-horizontal">
         <div class="form-group">
             <label for="animal" class="col-sm-2 control-label">Animal:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-5"> <!-- Reduce width by 50% -->
                 <select id="animal" name="animal.id" class="form-control">
                     {{#animals}}
                         <option value="{{id}}">{{name}}</option>
@@ -16,14 +16,14 @@
 
         <div class="form-group">
             <label for="location" class="col-sm-2 control-label">Location:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <input type="text" id="location" name="location" required class="form-control">
             </div>
         </div>
 
         <div class="form-group">
             <label for="rangerName" class="col-sm-2 control-label">Ranger Name:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <input type="text" id="rangerName" name="rangerName" required class="form-control">
             </div>
         </div>

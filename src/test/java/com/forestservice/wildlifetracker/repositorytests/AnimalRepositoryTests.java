@@ -36,14 +36,14 @@ public class AnimalRepositoryTests {
     @Test
     public void testFindAllAnimals() {
         List<Animal> animals = animalRepository.findAnimalsByNameEndingWith("-test");
-        assertEquals(3,animals.size());
+        assertEquals(3, animals.size());
 
     }
 
     @Test
     public void testFindAllEndangeredAnimals() {
         List<EndangeredAnimal> endangeredAnimals = animalRepository.findAllEndangeredAnimals();
-        assertEquals(1,endangeredAnimals.size());
+        assertEquals(1, endangeredAnimals.size());
 
     }
 
@@ -51,7 +51,7 @@ public class AnimalRepositoryTests {
     @Test
     public void testFindAllNonEndangeredAnimals() {
         List<Animal> nonendangeredAnimals = animalRepository.findAllNonEndangeredAnimals();
-        assertEquals(2,nonendangeredAnimals.size());
+        assertEquals(2, nonendangeredAnimals.size());
 
     }
 

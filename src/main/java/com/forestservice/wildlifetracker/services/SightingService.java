@@ -13,6 +13,6 @@ public interface SightingService {
 
     void addSighting(Long animalId, String location, String rangerName) throws AnimalExistsException;
 
-    void deleteSighting (long sightingId);
+    void deleteSighting(long sightingId);
 
 }

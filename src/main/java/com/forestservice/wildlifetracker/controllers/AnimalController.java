@@ -43,13 +43,13 @@ public class AnimalController {
                             @RequestParam(value = "age", required = false) String age,
                             Model model) {
         try {
-            log.info("adding endangered animal: {} ,health:{}, age :{} , health is empty :{}",name,health,age,health.isEmpty());
+            log.info("adding endangered animal: {} ,health:{}, age :{} , health is empty :{}", name, health, age, health.isEmpty());
             // If health and age parameters are provided, it's an EndangeredAnimal
-            if ((health != null  && !health.isEmpty())  && (age != null && !age.isEmpty())) {
-                log.info("adding endangered animal: {}",name);
+            if ((health != null && !health.isEmpty()) && (age != null && !age.isEmpty())) {
+                log.info("adding endangered animal: {}", name);
                 animalService.addEndangeredAnimal(name, health, age);
             } else {
-                log.info("adding ordinary animal: {}",name);
+                log.info("adding ordinary animal: {}", name);
                 animalService.addAnimal(name);
             }
             return "redirect:/animals";
