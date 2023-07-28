@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
@@ -23,6 +24,8 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query("SELECT ea FROM EndangeredAnimal ea WHERE ea.name = :name")
     List<EndangeredAnimal> findEndangeredAnimalsByName(@Param("name") String name);
 
+    @Query("SELECT ea FROM EndangeredAnimal ea WHERE ea.id = :id")
+    Optional<EndangeredAnimal> findEndangeredAnimalById(@Param("id") Long id);
 
     List<Animal> findAnimalsByNameEndingWith(String s);
 

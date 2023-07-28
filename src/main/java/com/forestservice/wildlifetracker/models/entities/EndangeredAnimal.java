@@ -14,7 +14,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@DiscriminatorValue("EndangeredAnimal") // Value for the "isendangered" discriminator column representing EndangeredAnimal
+@DiscriminatorValue("EndangeredAnimal")
+// Value for the "isendangered" discriminator column representing EndangeredAnimal
 public class EndangeredAnimal extends Animal {
 
     @Enumerated(EnumType.STRING)
@@ -22,7 +23,6 @@ public class EndangeredAnimal extends Animal {
 
     @Enumerated(EnumType.STRING)
     private AgeCategory age;
-
 
 
     public EndangeredAnimal(String name, String health, String age) {

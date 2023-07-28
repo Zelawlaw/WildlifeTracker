@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class SightingRepositoryTests {
@@ -24,13 +24,14 @@ public class SightingRepositoryTests {
 
     @Autowired
     AnimalRepository animalRepository;
-    Animal animal1,animal2,endangeredAnimal;
+    Animal animal1, animal2;
+    EndangeredAnimal endangeredAnimal;
 
     @BeforeEach
     public void setupData() {
         //sample animals
         animal1 = new Animal("Lion-test");
-       animal2 = new Animal("Elephant-test");
+        animal2 = new Animal("Elephant-test");
         endangeredAnimal = new EndangeredAnimal("Tiger-test", "healthy", "adult");
 
         animalRepository.save(animal1);
@@ -40,7 +41,7 @@ public class SightingRepositoryTests {
 
     @Test
     @Transactional  // roll back db transaction after test completes
-    public void testSavingSightingSuccess(){
+    public void testSavingSightingSuccess() {
         //add sighting of  Lion-Test
         Sighting lionsighting = new Sighting(animal1, "Tsavo", "Zelawlaw");
 
@@ -49,11 +50,14 @@ public class SightingRepositoryTests {
         this.sightingRepository.save(lionsighting);
         this.sightingRepository.save(tigersighting);
 
-         //find all sightings
-        assertEquals(2,this.sightingRepository.findAll().size());
+        //find all sightings
+        assertEquals(2, this.sightingRepository.findAllByAnimalNameEndingWith("-test").size());
 
         //sightings of endangered animals
-        assertEquals(1,this.sightingRepository.findAllEndangeredSightings().size());
+        assertEquals(1, this.sightingRepository.findAllEndangeredByAnimalNameEndingWith("-test").size());
+
+        //check if sighting of endangered animal has isendangered field to true
+        assertTrue(this.sightingRepository.findAllEndangeredByAnimalNameEndingWith("-test").get(0).isEndangered());
 
         //confirm reported time is not null
         assertNotNull(this.sightingRepository.findAll().get(0).getReportedTime());
@@ -64,6 +68,6 @@ public class SightingRepositoryTests {
 
         // Find all animals with the '-test' suffix
         List<Animal> animalsToRemove = animalRepository.findAnimalsByNameEndingWith("-test");
-       // animalRepository.deleteAll(animalsToRemove);
+        // animalRepository.deleteAll(animalsToRemove);
     }
 }

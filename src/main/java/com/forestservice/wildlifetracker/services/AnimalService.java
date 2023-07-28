@@ -18,7 +18,7 @@ public interface AnimalService {
     // Additional methods for handling EndangeredAnimal
     List<EndangeredAnimal> getAllEndangeredAnimals();
 
-    void addEndangeredAnimal(String name,String health,String age) throws AnimalExistsException;
+    void addEndangeredAnimal(String name, String health, String age) throws AnimalExistsException;
 
 
 }

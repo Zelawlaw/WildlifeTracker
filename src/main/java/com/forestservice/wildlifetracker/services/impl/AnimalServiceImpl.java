@@ -28,18 +28,18 @@ public class AnimalServiceImpl implements AnimalService {
         allCombinedAnimals.addAll(allOrdinary);
         allCombinedAnimals.addAll(allendangered);
 
-        for(int i = 0;i<allCombinedAnimals.size();i++){
+        for (int i = 0; i < allCombinedAnimals.size(); i++) {
             log.info(allCombinedAnimals.get(i).toString());
         }
 
-      return allCombinedAnimals;
+        return allCombinedAnimals;
     }
 
 
     @Override
     public void addAnimal(String name) throws AnimalExistsException {
 
-        if (this.animalRepository.findAnimalsByName(name).size() >0 ) {
+        if (this.animalRepository.findAnimalsByName(name).size() > 0) {
             throw new AnimalExistsException("Animal with name '" + name + "' already exists.");
         }
 
@@ -50,21 +50,21 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public void deleteAnimal(String name) {
-      this.animalRepository.deleteAll(this.animalRepository.findAnimalsByName(name));
+        this.animalRepository.deleteAll(this.animalRepository.findAnimalsByName(name));
     }
 
     @Override
     public List<EndangeredAnimal> getAllEndangeredAnimals() {
-     return this.animalRepository.findAllEndangeredAnimals();
+        return this.animalRepository.findAllEndangeredAnimals();
     }
 
     @Override
     public void addEndangeredAnimal(String name, String age, String health) throws AnimalExistsException {
-        if (this.animalRepository.findAnimalsByName(name).size() >0 ) {
+        if (this.animalRepository.findAnimalsByName(name).size() > 0) {
             throw new AnimalExistsException("Animal with name '" + name + "' already exists.");
         }
 
-        Animal animal = new EndangeredAnimal(name,age,health);
+        Animal animal = new EndangeredAnimal(name, age, health);
         animalRepository.save(animal);
     }
 
