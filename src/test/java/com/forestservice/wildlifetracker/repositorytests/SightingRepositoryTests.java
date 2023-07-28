@@ -13,8 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class SightingRepositoryTests {
@@ -24,7 +23,8 @@ public class SightingRepositoryTests {
 
     @Autowired
     AnimalRepository animalRepository;
-    Animal animal1,animal2,endangeredAnimal;
+    Animal animal1,animal2;
+    EndangeredAnimal endangeredAnimal;
 
     @BeforeEach
     public void setupData() {
@@ -50,10 +50,13 @@ public class SightingRepositoryTests {
         this.sightingRepository.save(tigersighting);
 
          //find all sightings
-        assertEquals(2,this.sightingRepository.findAll().size());
+        assertEquals(2,this.sightingRepository.findAllByAnimalNameEndingWith("-test").size());
 
         //sightings of endangered animals
-        assertEquals(1,this.sightingRepository.findAllEndangeredSightings().size());
+        assertEquals(1,this.sightingRepository.findAllEndangeredByAnimalNameEndingWith("-test").size());
+
+        //check if sighting of endangered animal has isendangered field to true
+        assertTrue(this.sightingRepository.findAllEndangeredByAnimalNameEndingWith("-test").get(0).isEndangered());
 
         //confirm reported time is not null
         assertNotNull(this.sightingRepository.findAll().get(0).getReportedTime());

@@ -35,7 +35,7 @@ public class AnimalRepositoryTests {
 
     @Test
     public void testFindAllAnimals() {
-        List<Animal> animals = animalRepository.findAllAnimals();
+        List<Animal> animals = animalRepository.findAnimalsByNameEndingWith("-test");
         assertEquals(3,animals.size());
 
     }

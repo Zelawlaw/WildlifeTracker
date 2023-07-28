@@ -66,6 +66,7 @@ public class SightingServiceTests {
 
         // Mock the behavior of the animalRepository to return an empty optional
         when(animalRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+        when(animalRepository.findEndangeredAnimalById(any(Long.class))).thenReturn(Optional.empty());
 
         // Call the addSighting method and expect it to throw AnimalExistsException
         assertThrows(AnimalExistsException.class, () -> {

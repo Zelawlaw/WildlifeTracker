@@ -40,7 +40,7 @@ public class AnimalServiceTests {
         String health = "healthy";
 
         // Mock the behavior of the animalRepository to return an empty list of endangered animals with the given name
-        when(animalRepository.findEndangeredAnimalsByName(eq(name))).thenReturn(Collections.emptyList());
+        when(animalRepository.findAnimalsByName(eq(name))).thenReturn(Collections.emptyList());
 
         // Mock the behavior of the animalRepository save method
         when(animalRepository.save(any(EndangeredAnimal.class))).thenReturn(null); // Return value not used in this test
@@ -49,7 +49,7 @@ public class AnimalServiceTests {
         animalService.addEndangeredAnimal(name,  health, age);
 
         // Verify that the animalRepository.findEndangeredAnimalsByName is called once with the correct argument
-        verify(animalRepository, times(1)).findEndangeredAnimalsByName(eq(name));
+        verify(animalRepository, times(1)).findAnimalsByName(eq(name));
 
         // Verify that the animalRepository.save is called once with the correct argument
         verify(animalRepository, times(1)).save(any(EndangeredAnimal.class));
@@ -63,7 +63,7 @@ public class AnimalServiceTests {
         String health = "healthy";
 
         // Mock the behavior of the animalRepository to return a list containing an existing endangered animal with the given name
-        when(animalRepository.findEndangeredAnimalsByName(eq(name)))
+        when(animalRepository.findAnimalsByName(eq(name)))
                 .thenReturn(Collections.singletonList(new EndangeredAnimal(name,health,age)));
 
         // Call the addEndangeredAnimal method and expect it to throw AnimalExistsException
@@ -72,7 +72,7 @@ public class AnimalServiceTests {
         });
 
         // Verify that the animalRepository.findEndangeredAnimalsByName is called once with the correct argument
-        verify(animalRepository, times(1)).findEndangeredAnimalsByName(eq(name));
+        verify(animalRepository, times(1)).findAnimalsByName(eq(name));
 
         // Verify that the animalRepository.save is not called
         verify(animalRepository, never()).save(any(EndangeredAnimal.class));
